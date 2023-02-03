@@ -23,13 +23,29 @@ function PhoneNumberScreen() {
   const navigation = useNavigation<any>();
 
   const formatAndNavigate = async () => {
-    var formatted_number = `${91}+${Math.floor(
-      parseInt(phoneNo) / 10000000,
-    )}-${Math.floor((parseInt(phoneNo) % 10000000) / 10000)}-${
-      parseInt(phoneNo) % 10000
-    }`;
     await navigation.navigate('EnterOtp', {phoneNo});
   };
+
+
+  const formatPhNo = (text:any) => {
+    let formatedNo = formatMobileNumber(text);
+    console.log('length',formatedNo.length)
+    setPhoneNo(formatedNo)
+  };
+  
+  const formatMobileNumber=((text:any)=> {
+    var cleaned = ("" + text).replace(/\D/g, "");
+    var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+      var intlCode = match[1] ? "+1 " : "",
+        number = [intlCode, "", match[2], "- ", match[3], "-", match[4]].join(
+          ""
+        );
+      return number;
+    }
+    return text;
+  }
+  )
 
   const formatPhoneNo = (number: any) => {
     let formattedText = number.replace(/[^\d]/g, '');
@@ -67,7 +83,7 @@ function PhoneNumberScreen() {
           value={phoneNo}
           placeholderTextColor={colors.BLACK}
           onChangeText={number => {
-            formatPhoneNo(number);
+            formatPhNo(number);
           }}
         />
       </View>
@@ -83,7 +99,7 @@ function PhoneNumberScreen() {
       <TouchableOpacity
         style={[
           styles.submitButton,
-          {opacity: phoneNo.length !== 12 ? 0.5 : 1.0},
+          {opacity: phoneNo.length !== 13 ? 0.5 : 1.0},
         ]}
         onPress={() => formatAndNavigate()}
         disabled={phoneNo.length !== 12}>
