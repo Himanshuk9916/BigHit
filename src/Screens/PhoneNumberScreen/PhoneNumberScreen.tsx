@@ -93,7 +93,7 @@ function PhoneNumberScreen() {
           {opacity: phoneNo.length !== 13 ? 0.5 : 1.0},
         ]}
         onPress={() => formatAndNavigate()}
-        disabled={phoneNo.length !== 12}>
+        disabled={phoneNo.length !== 13}>
         <Text style={styles.buttonText}>{texts.LETS_GO}</Text>
       </TouchableOpacity>
     </Background>

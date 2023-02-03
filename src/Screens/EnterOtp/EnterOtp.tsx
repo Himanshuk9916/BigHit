@@ -53,6 +53,7 @@ function EnterOtp(props: any) {
         }, 3000);
        }else{
         setWrongOtp(true);
+        Alert.alert('Password:123456')
        }
   };
 
