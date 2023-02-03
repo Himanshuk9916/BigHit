@@ -14,14 +14,14 @@ import {useNavigation} from '@react-navigation/native';
 import assets from '../../assets';
 import styles from './HomeScreenStyle';
 import texts from '../../constants/Text';
-import BottomTabNavigator from '../../navigators/BottomTabNavigator'
+import { proportionedPixel } from '../../utils/Dimension';
 
 const screenWidth=Dimensions.get('window').width;
 
 function HomeScreen() {
 
-  const topViewValue=new Animated.ValueXY({x:0,y:-300})
-  const bottomViewValue=new Animated.ValueXY({x:0,y:500})
+  const topViewValue=new Animated.ValueXY({x:0,y:-proportionedPixel(220)})
+  const bottomViewValue=new Animated.ValueXY({x:0,y:proportionedPixel(400)})
 
   useEffect(()=>{
     Animated.timing(topViewValue, {
@@ -34,7 +34,7 @@ function HomeScreen() {
 
   useEffect(()=>{
     Animated.timing(bottomViewValue, {
-      toValue: {x:0,y:130},
+      toValue: {x:0,y:proportionedPixel(60)},
       duration: 1000,
       easing: Easing.linear,
       useNativeDriver: false,
