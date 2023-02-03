@@ -47,15 +47,6 @@ function PhoneNumberScreen() {
   }
   )
 
-  const formatPhoneNo = (number: any) => {
-    let formattedText = number.replace(/[^\d]/g, '');
-    formattedText = `${formattedText.slice(0, 3)}-${formattedText.slice(
-      3,
-      6,
-    )}-${formattedText.slice(6, 10)}`;
-    setPhoneNo(formattedText);
-  };
-
   const PhoneTextIp = () => {
     return (
       <View
