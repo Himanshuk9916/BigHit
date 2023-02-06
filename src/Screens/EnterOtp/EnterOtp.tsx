@@ -120,7 +120,7 @@ function EnterOtp(props: any) {
       ) : (
         <View style={styles.lotteView}>
           {commonLottieView == 2 && (
-            <Text style={styles.loginSuccess}>{`${texts.LOGIN_SUCCESS}!`}</Text>
+            <Text style={styles.loginSuccess}>{`${texts.LOGIN_SUCCESS}!`}</Text> // commonLottieView(2)->showing text only when success json animation is loaded
           )}
           <View
             style={{

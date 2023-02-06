@@ -10,7 +10,6 @@ import {
 import {proportionedPixel, widthPercentageToDP} from '../utils/Dimension';
 
 const screenWidth = Dimensions.get('window').width;
-console.log(screenWidth);
 
 function Background(props: any) {
   return (

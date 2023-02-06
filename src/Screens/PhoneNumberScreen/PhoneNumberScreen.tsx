@@ -29,7 +29,6 @@ function PhoneNumberScreen() {
 
   const formatPhNo = (text:any) => {
     let formatedNo = formatMobileNumber(text);
-    console.log('length',formatedNo.length)
     setPhoneNo(formatedNo)
   };
   
