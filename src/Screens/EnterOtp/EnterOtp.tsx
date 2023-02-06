@@ -1,5 +1,11 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {View, Text, TextInput, TouchableOpacity, Alert} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Alert,
+  LogBox,
+} from 'react-native';
 import texts from '../../constants/Text';
 import AnimatedLottieView from 'lottie-react-native';
 import styles from './EnterOtpStyles';
@@ -8,92 +14,55 @@ import Background from '../../components/Background';
 import {proportionedPixel} from '../../utils/Dimension';
 import {useNavigation} from '@react-navigation/native';
 import NumberComponent from '../../components/NumberComonent';
-import SingleOtpTextInput from '../../components/SingleOtpTextInput';
+import OtpInputs from 'react-native-otp-inputs';
+import colors from '../../constants/Color';
 
 function EnterOtp(props: any) {
+  LogBox.ignoreAllLogs(); //To-do remove later
+  const [focus, setFocus] = useState(false);
   const [lottieView, setLottieView] = useState(false);
   const [commonLottieView, setCommonLottieView] = useState(0);
-  const [showLoginText, setShowLoginText] = useState<boolean>(false);
-  const [firstOtpValue, setFirstOtpValue] = useState<any>(0);
-  const [secondOtpValue, setSecondOtpValue] = useState<any>(0);
-  const [thirdOtpValue, setThirdOtpValue] = useState<any>(0);
-  const [fourthOtpValue, setFourthOtpValue] = useState<any>(0);
-  const [fifthOtpValue, setFifthOtpValue] = useState<any>(0);
-  const [sixthOtpValue, setSixthOtpValue] = useState<any>(0);
-  const [wrongOtp,setWrongOtp]=useState<boolean>(false);
-
-
-  // useRefs for changing of refs
-  // const firstInputValueRef = useRef<any>(null);
-  // const secondInputValueRef = useRef<any>(null);
-  // const thirdInputValueRef = useRef<any>(null);
-  // const fourthInputValueRef = useRef<any>(null);
-  // const fifthInputValueRef = useRef<any>(null);
-  // const sixthInputValueRef = useRef<any>(null);
+  const [wrongOtp, setWrongOtp] = useState<boolean>(false);
+  const [otp, setOtp] = useState('');
 
   const navigation = useNavigation<any>();
 
   const lottViewShow = () => {
-    if(firstOtpValue==='1' && 
-      secondOtpValue==='2' &&
-      thirdOtpValue==='3' &&
-      fourthOtpValue==='4' &&
-      fifthOtpValue==='5' &&
-      sixthOtpValue==='6'
-       ){
-        setLottieView(true);
-        setTimeout(() => {
-          setCommonLottieView(1);
-        }, 200);
-    
-        setTimeout(() => {
-          setCommonLottieView(2);
-          setShowLoginText(true);
-        }, 1500);
-    
-        setTimeout(() => {
-          navigation.navigate('HomeScreen');
-        }, 3000);
-       }else{
-        setWrongOtp(true);
-        Alert.alert('Password:123456')
-       }
+    if (otp === '123456') {
+      setLottieView(true);
+      setTimeout(() => {
+        setCommonLottieView(1);
+      }, 200);
+
+      setTimeout(() => {
+        setCommonLottieView(2);
+      }, 1500);
+
+      setTimeout(() => {
+        navigation.navigate('HomeScreen');
+      }, 3000);
+    } else {
+      setWrongOtp(true);
+      Alert.alert('Password:123456');
+    }
   };
 
   const viewOTP = () => {
     return (
-      <View style={styles.otpTextIp}>
-        <SingleOtpTextInput
-          onChangeText={(text:number) => {
-            setFirstOtpValue(text);
-          }}
+      <OtpInputs
+        style={styles.otpContainer}
+        onFocus={() => setFocus(true)}
+        handleChange={text => setOtp(text)}
+        numberOfInputs={6}
+        textAlign={'center'}
+        inputStyles={[
+          styles.otpInputStyle,
+          {
+            borderColor: focus ? colors.BLUE : colors.GREY,
+            backgroundColor: focus ? colors.WHITE : colors.GREY,
+          },
+        ]} autofillFromClipboard={false}      
         />
-        <SingleOtpTextInput
-          onChangeText={(text:number) => {
-            setSecondOtpValue(text);
-          }}
-        />
-        <SingleOtpTextInput
-          onChangeText={(text:number)=> {
-            setThirdOtpValue(text);
-          }}
-        />
-        <SingleOtpTextInput
-          onChangeText={(text:number)=> {
-            setFourthOtpValue(text);
-          }}
-        />
-        <SingleOtpTextInput
-          onChangeText={(text:number) => {
-            setFifthOtpValue(text);
-          }}
-        />
-        <SingleOtpTextInput
-          onChangeText={(text:number) => {
-            setSixthOtpValue(text);
-          }}
-        />
-      </View>
     );
   };
 
@@ -102,17 +71,17 @@ function EnterOtp(props: any) {
       {!lottieView ? (
         <View style={styles.container}>
           <Text style={styles.enterOtpText}>{texts.ENTER_OTP}</Text>
-          <NumberComponent
-          number={props.route.params.phoneNo}
-          />
+          <NumberComponent number={props.route.params.phoneNo} />
           {viewOTP()}
-          {wrongOtp && <Text style={styles.invalidOtpText}>{texts.INVALID_OTP}</Text>}
+          {wrongOtp && (
+            <Text style={styles.invalidOtpText}>{texts.INVALID_OTP}</Text>
+          )}
           <View style={styles.submitButton}>
             <TouchableOpacity
               onPress={() => lottViewShow()}
               style={[
                 styles.touchableContainer,
-                {opacity: sixthOtpValue !== 0 ? 1.0 : 0.5},
+                {opacity: otp.length === 6 ? 1.0 : 0.5},
               ]}>
               <View style={styles.touchableContainer}>
                 <Text style={styles.submitText}>{texts.SUBMIT}</Text>

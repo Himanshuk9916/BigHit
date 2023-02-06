@@ -13,11 +13,6 @@ const styles = StyleSheet.create({
       color: colors.BLACK,
       fontWeight:'bold',
     },
-    otpTextIp: {
-      flexDirection: 'row',
-      width: widthPercentageToDP('70'),
-      justifyContent: 'space-around',
-    },
     submitButton: {
       marginVertical: heightPercentageToDP('5'),
     },
@@ -28,16 +23,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
-    textInput: {
-      borderWidth: proportionedPixel(0.7),
-      borderColor: colors.BLUE,
-      width: widthPercentageToDP('8'),
-      height: heightPercentageToDP('6'),
-      borderRadius:proportionedPixel(5),
-      textAlign:'center',
-      color:colors.BLACK,
-      fontWeight:'bold'
-    },
     loginSuccess:{
       fontWeight:'bold',
       fontSize:proportionedPixel(9)
@@ -46,24 +31,12 @@ const styles = StyleSheet.create({
       justifyContent:'center',
       alignItems:'center'
     },
-    emptyOtpTextField:{
-      borderWidth: proportionedPixel(0.7),
-      borderColor: colors.GREY,
-      width: widthPercentageToDP('8'),
-      height: heightPercentageToDP('6'),
-      borderRadius:proportionedPixel(5),
-      textAlign:'center',
-      color:'red',
-      fontWeight:'bold',
-      backgroundColor:colors.GREY
-    },
     touchableContainer: {
       borderWidth: 1,
       borderColor: colors.BLACK,
       borderRadius: proportionedPixel(20),
       backgroundColor:colors.BLACK
   },
-
   submitText: {
     paddingHorizontal: widthPercentageToDP('25'),
     paddingVertical: heightPercentageToDP('1.5'),
@@ -74,6 +47,14 @@ invalidOtpText:{
   marginVertical:proportionedPixel(10),
   color:'red',
   fontSize:proportionedPixel(9)
+},
+otpContainer:{
+  flexDirection: 'row',
+  width: 250,
+  justifyContent: 'space-between',
+},
+otpInputStyle:{
+  borderWidth: 1,
 }
   });
 
