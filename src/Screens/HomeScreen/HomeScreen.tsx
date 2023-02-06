@@ -41,6 +41,23 @@ function HomeScreen() {
     }).start();
   },[])
 
+  const headerView=()=>{
+    return(
+      <View style={styles.headerView}>
+      <View>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={styles.welcomeText}>{`${texts.WELCOME} To`}</Text>
+          <Text style={styles.bigHitText}>{texts.BIGHIT}</Text>
+        </View>
+        <Text style={styles.platformText}>{texts.BIGGEST_PLATFORM}</Text>
+      </View>
+      <TouchableOpacity style={styles.createProfileButton}>
+        <Text style={styles.buttonText}>{texts.CREATE_PROFILE}</Text>
+      </TouchableOpacity>
+    </View>
+    )
+  }
+
   const navigation = useNavigation();
 
   return (
@@ -50,18 +67,7 @@ function HomeScreen() {
         <ImageBackground
           source={assets.images.homeScreenTopBg}
           style={styles.topViewBgImage}>
-          <View style={styles.headerView}>
-            <View>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={styles.welcomeText}>{`${texts.WELCOME} To`}</Text>
-                <Text style={styles.bigHitText}>{texts.BIGHIT}</Text>
-              </View>
-              <Text style={styles.platformText}>{texts.BIGGEST_PLATFORM}</Text>
-            </View>
-            <TouchableOpacity style={styles.createProfileButton}>
-              <Text style={styles.buttonText}>{texts.CREATE_PROFILE}</Text>
-            </TouchableOpacity>
-          </View>
+            {headerView()}
           <View style={{alignSelf: 'center'}}>
             <Image
               source={assets.images.bgTopImage}
