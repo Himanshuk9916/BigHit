@@ -16,7 +16,8 @@ const assets={
         mrityunjayBasketBall:require('../assets/images/mrityunjayBasketBall.png'),
         akashBasketBall:require('../assets/images/akashBasketBall.png'),
         indianFlag:require('../assets/images/indianFlag.png'),
-        downArrow:require('../assets/images/downArrow.png')
+        downArrow:require('../assets/images/downArrow.png'),
+        ballKick:require('../assets/images/ballKick.png')
     },
     bottomTabIcons:{
         homeIcon:require('../assets/images/home.png'),

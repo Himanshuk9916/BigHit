@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   bigHitText: {
     fontSize: proportionedPixel(8),
     fontWeight: 'bold',
-    // marginLeft: proportionedPixel(3),
+    marginLeft: proportionedPixel(3),
     color: colors.BLACK,
   },
   welcomeText: {
