@@ -8,38 +8,38 @@ import Background from '../../components/Background';
 import {proportionedPixel} from '../../utils/Dimension';
 import {useNavigation} from '@react-navigation/native';
 import NumberComponent from '../../components/NumberComonent';
-// import LottieView = require("lottie-react-native");
+import SingleOtpTextInput from '../../components/SingleOtpTextInput';
 
 function EnterOtp(props: any) {
   const [lottieView, setLottieView] = useState(false);
   const [commonLottieView, setCommonLottieView] = useState(0);
   const [showLoginText, setShowLoginText] = useState<boolean>(false);
-  const [firstOtpValue, setFirstOtpValue] = useState<any>('');
-  const [secondOtpValue, setSecondOtpValue] = useState<any>('');
-  const [thirdOtpValue, setThirdOtpValue] = useState<any>('');
-  const [fourthOtpValue, setFourthOtpValue] = useState<any>('');
-  const [fifthOtpValue, setFifthOtpValue] = useState<any>('');
-  const [sixthOtpValue, setSixthOtpValue] = useState<any>('');
+  const [firstOtpValue, setFirstOtpValue] = useState<any>(0);
+  const [secondOtpValue, setSecondOtpValue] = useState<any>(0);
+  const [thirdOtpValue, setThirdOtpValue] = useState<any>(0);
+  const [fourthOtpValue, setFourthOtpValue] = useState<any>(0);
+  const [fifthOtpValue, setFifthOtpValue] = useState<any>(0);
+  const [sixthOtpValue, setSixthOtpValue] = useState<any>(0);
   const [wrongOtp,setWrongOtp]=useState<boolean>(false);
 
 
   // useRefs for changing of refs
-  const firstInputValueRef = useRef<any>(null);
-  const secondInputValueRef = useRef<any>(null);
-  const thirdInputValueRef = useRef<any>(null);
-  const fourthInputValueRef = useRef<any>(null);
-  const fifthInputValueRef = useRef<any>(null);
-  const sixthInputValueRef = useRef<any>(null);
+  // const firstInputValueRef = useRef<any>(null);
+  // const secondInputValueRef = useRef<any>(null);
+  // const thirdInputValueRef = useRef<any>(null);
+  // const fourthInputValueRef = useRef<any>(null);
+  // const fifthInputValueRef = useRef<any>(null);
+  // const sixthInputValueRef = useRef<any>(null);
 
   const navigation = useNavigation<any>();
 
   const lottViewShow = () => {
-    if(firstOtpValue==1 && 
-      secondOtpValue==2 &&
-      thirdOtpValue==3 &&
-      fourthOtpValue==4 &&
-      fifthOtpValue==5 &&
-      sixthOtpValue ==6
+    if(firstOtpValue==='1' && 
+      secondOtpValue==='2' &&
+      thirdOtpValue==='3' &&
+      fourthOtpValue==='4' &&
+      fifthOtpValue==='5' &&
+      sixthOtpValue==='6'
        ){
         setLottieView(true);
         setTimeout(() => {
@@ -63,64 +63,34 @@ function EnterOtp(props: any) {
   const viewOTP = () => {
     return (
       <View style={styles.otpTextIp}>
-        <TextInput
-          style={styles.textInput}
-          ref={firstInputValueRef}
-          keyboardType={'number-pad'}
-          maxLength={1}
-          onChangeText={text => {
+        <SingleOtpTextInput
+          onChangeText={(text:number) => {
             setFirstOtpValue(text);
-            secondInputValueRef.current.focus();
           }}
         />
-        <TextInput
-          style={styles.textInput}
-          ref={secondInputValueRef}
-          keyboardType={'number-pad'}
-          maxLength={1}
-          onChangeText={text => {
+        <SingleOtpTextInput
+          onChangeText={(text:number) => {
             setSecondOtpValue(text);
-            thirdInputValueRef.current.focus();
           }}
         />
-        <TextInput
-          style={styles.textInput}
-          ref={thirdInputValueRef}
-          keyboardType={'number-pad'}
-          maxLength={1}
-          onChangeText={text => {
+        <SingleOtpTextInput
+          onChangeText={(text:number)=> {
             setThirdOtpValue(text);
-            fourthInputValueRef.current.focus();
           }}
         />
-        <TextInput
-          style={styles.textInput}
-          ref={fourthInputValueRef}
-          keyboardType={'number-pad'}
-          maxLength={1}
-          onChangeText={text => {
+        <SingleOtpTextInput
+          onChangeText={(text:number)=> {
             setFourthOtpValue(text);
-            fifthInputValueRef.current.focus();
           }}
         />
-        <TextInput
-          style={styles.textInput}
-          ref={fifthInputValueRef}
-          keyboardType={'number-pad'}
-          maxLength={1}
-          onChangeText={text => {
+        <SingleOtpTextInput
+          onChangeText={(text:number) => {
             setFifthOtpValue(text);
-            sixthInputValueRef.current.focus();
           }}
         />
-        <TextInput
-          style={styles.textInput}
-          ref={sixthInputValueRef}
-          keyboardType={'number-pad'}
-          maxLength={1}
-          onChangeText={text => {
+        <SingleOtpTextInput
+          onChangeText={(text:number) => {
             setSixthOtpValue(text);
-            firstInputValueRef.current.focus();
           }}
         />
       </View>
@@ -140,10 +110,9 @@ function EnterOtp(props: any) {
           <View style={styles.submitButton}>
             <TouchableOpacity
               onPress={() => lottViewShow()}
-              disabled={sixthOtpValue === ''}
               style={[
                 styles.touchableContainer,
-                {opacity: sixthOtpValue === '' ? 0.5 : 1.0},
+                {opacity: sixthOtpValue !== 0 ? 1.0 : 0.5},
               ]}>
               <View style={styles.touchableContainer}>
                 <Text style={styles.submitText}>{texts.SUBMIT}</Text>
