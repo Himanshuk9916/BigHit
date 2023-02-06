@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
-import EnterOtp from "../Screens/EnterOtp/EnterOtp";
-import PhoneNumberScreen from "../Screens/PhoneNumberScreen/PhoneNumberScreen";
+import EnterOtp from "../screens/EnterOtp/EnterOtp";
+import PhoneNumberScreen from "../screens/PhoneNumberScreen/PhoneNumberScreen";
 
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTabNavigator from '../navigators/BottomTabNavigator'

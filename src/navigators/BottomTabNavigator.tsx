@@ -1,11 +1,11 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Image} from 'react-native';
 import assets from '../assets';
-import DemoScreen2 from '../Screens/DemoScreen/DemoScreen2';
-import DemoScreen3 from '../Screens/DemoScreen/DemoSCreen3';
-import DemoScreen4 from '../Screens/DemoScreen/DemoScreen4';
-import DemoScreen5 from '../Screens/DemoScreen/DemoScreen5';
-import HomeScreen from '../Screens/HomeScreen/HomeScreen';
+import DemoScreen2 from '../screens/DemoScreen/DemoScreen2';
+import DemoScreen3 from '../screens/DemoScreen/DemoSCreen3';
+import DemoScreen5 from '../screens/DemoScreen/DemoScreen5';
+import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import DemoScreen4 from '../screens/DemoScreen/DemoScreen4';
 import {proportionedPixel} from '../utils/Dimension';
 
 const Tab = createBottomTabNavigator();
