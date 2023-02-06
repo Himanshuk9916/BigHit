@@ -7,19 +7,13 @@ import assets from '../../assets/index';
 import Background from '../../components/Background';
 import {proportionedPixel} from '../../utils/Dimension';
 import {useNavigation} from '@react-navigation/native';
-import colors from '../../constants/Color';
+import NumberComponent from '../../components/NumberComonent';
 // import LottieView = require("lottie-react-native");
 
 function EnterOtp(props: any) {
   const [lottieView, setLottieView] = useState(false);
   const [commonLottieView, setCommonLottieView] = useState(0);
   const [showLoginText, setShowLoginText] = useState<boolean>(false);
-  const firstInputValueRef = useRef<any>(null);
-  const secondInputValueRef = useRef<any>(null);
-  const thirdInputValueRef = useRef<any>(null);
-  const fourthInputValueRef = useRef<any>(null);
-  const fifthInputValueRef = useRef<any>(null);
-  const sixthInputValueRef = useRef<any>(null);
   const [firstOtpValue, setFirstOtpValue] = useState<any>('');
   const [secondOtpValue, setSecondOtpValue] = useState<any>('');
   const [thirdOtpValue, setThirdOtpValue] = useState<any>('');
@@ -27,6 +21,15 @@ function EnterOtp(props: any) {
   const [fifthOtpValue, setFifthOtpValue] = useState<any>('');
   const [sixthOtpValue, setSixthOtpValue] = useState<any>('');
   const [wrongOtp,setWrongOtp]=useState<boolean>(false);
+
+
+  // useRefs for changing of refs
+  const firstInputValueRef = useRef<any>(null);
+  const secondInputValueRef = useRef<any>(null);
+  const thirdInputValueRef = useRef<any>(null);
+  const fourthInputValueRef = useRef<any>(null);
+  const fifthInputValueRef = useRef<any>(null);
+  const sixthInputValueRef = useRef<any>(null);
 
   const navigation = useNavigation<any>();
 
@@ -129,15 +132,9 @@ function EnterOtp(props: any) {
       {!lottieView ? (
         <View style={styles.container}>
           <Text style={styles.enterOtpText}>{texts.ENTER_OTP}</Text>
-          <View style={styles.numberContainer}>
-            <Text
-              style={
-                styles.numberText
-              }>{`+91-${props.route.params.phoneNo}`}</Text>
-            <TouchableOpacity>
-              <Text style={styles.changeText}>{texts.CHANGE}</Text>
-            </TouchableOpacity>
-          </View>
+          <NumberComponent
+          number={props.route.params.phoneNo}
+          />
           {viewOTP()}
           {wrongOtp && <Text style={styles.invalidOtpText}>{texts.INVALID_OTP}</Text>}
           <View style={styles.submitButton}>

@@ -3,12 +3,6 @@ import { proportionedPixel,heightPercentageToDP,widthPercentageToDP } from "../.
 import colors from "../../constants/Color";
 
 const styles = StyleSheet.create({
-    numberContainer: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      width: widthPercentageToDP('65'),
-      marginVertical: heightPercentageToDP('2'),
-    },
     container: {
       flex: 1,
       alignItems: 'center',
@@ -43,15 +37,6 @@ const styles = StyleSheet.create({
       textAlign:'center',
       color:colors.BLACK,
       fontWeight:'bold'
-    },
-    numberText:{
-      fontWeight:'bold',
-      fontSize:proportionedPixel(10),
-    },
-    changeText:{
-      fontWeight:'bold',
-      fontSize:proportionedPixel(10),
-      color:colors.BLUE
     },
     loginSuccess:{
       fontWeight:'bold',
