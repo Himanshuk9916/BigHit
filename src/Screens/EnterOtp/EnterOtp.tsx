@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Alert,
-  LogBox,
-} from 'react-native';
+import {View, Text, TouchableOpacity, Alert, LogBox} from 'react-native';
 import texts from '../../constants/Text';
 import AnimatedLottieView from 'lottie-react-native';
 import styles from './EnterOtpStyles';
@@ -18,10 +12,10 @@ import OtpInputs from 'react-native-otp-inputs';
 import colors from '../../constants/Color';
 
 function EnterOtp(props: any) {
-  LogBox.ignoreAllLogs(); //To-do remove later
+  LogBox.ignoreAllLogs();
   const [focus, setFocus] = useState(false);
   const [lottieView, setLottieView] = useState(false);
-  const [commonLottieView, setCommonLottieView] = useState(0);
+  const [commonLottieView, setCommonLottieView] = useState(0); //handling view of loading after sumit otp
   const [wrongOtp, setWrongOtp] = useState<boolean>(false);
   const [otp, setOtp] = useState('');
 
@@ -40,13 +34,14 @@ function EnterOtp(props: any) {
 
       setTimeout(() => {
         navigation.navigate('HomeScreen');
-      }, 3000);
+      }, 3500);
     } else {
       setWrongOtp(true);
       Alert.alert('Password:123456');
     }
   };
 
+  //This is Otp-Input View
   const viewOTP = () => {
     return (
       <OtpInputs
@@ -61,9 +56,42 @@ function EnterOtp(props: any) {
             borderColor: focus ? colors.BLUE : colors.GREY,
             backgroundColor: focus ? colors.WHITE : colors.GREY,
           },
-        ]} autofillFromClipboard={false}      
-        />
+        ]}
+        autofillFromClipboard={false}
+      />
     );
+  };
+
+  const animatedTriangle = () => {
+    return (
+      <AnimatedLottieView
+        source={assets.jsonData.triangleLoader}
+        loop={false}
+        autoPlay={true}
+        onAnimationFinish={()=>animatedSuccess}
+      />
+    );
+  };
+
+  const animatedSuccess = () => {
+    return (
+      <AnimatedLottieView
+        source={assets.jsonData.success}
+        loop={false}
+        autoPlay={true}
+      />
+    );
+  };
+
+  const switchAnimation = (commonLottieView: any) => {
+    switch (commonLottieView) {
+      case 1:
+        return animatedTriangle();
+      case 2:
+        return animatedSuccess();
+      default:
+        return animatedTriangle();
+    }
   };
 
   return (
@@ -99,26 +127,7 @@ function EnterOtp(props: any) {
               height: proportionedPixel(40),
               width: proportionedPixel(40),
             }}>
-            {commonLottieView == 0 && (
-              <AnimatedLottieView
-                source={assets.jsonData.triangleLoader}
-                autoPlay={false}
-              />
-            )}
-            {commonLottieView == 1 && (
-              <AnimatedLottieView
-                source={assets.jsonData.triangleLoader}
-                loop={false}
-                autoPlay={true}
-              />
-            )}
-            {commonLottieView == 2 && (
-              <AnimatedLottieView
-                source={assets.jsonData.success}
-                loop={false}
-                autoPlay={true}
-              />
-            )}
+            {switchAnimation(commonLottieView)}
           </View>
         </View>
       )}
