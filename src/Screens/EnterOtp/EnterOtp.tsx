@@ -68,7 +68,7 @@ function EnterOtp(props: any) {
         source={assets.jsonData.triangleLoader}
         loop={false}
         autoPlay={true}
-        onAnimationFinish={()=>animatedSuccess}
+        onAnimationFinish={() => animatedSuccess}
       />
     );
   };
