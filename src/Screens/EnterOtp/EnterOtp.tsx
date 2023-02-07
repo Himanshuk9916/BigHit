@@ -15,26 +15,19 @@ function EnterOtp(props: any) {
   LogBox.ignoreAllLogs();
   const [focus, setFocus] = useState(false);
   const [lottieView, setLottieView] = useState(false);
-  const [commonLottieView, setCommonLottieView] = useState(0); //handling view of loading after sumit otp
   const [wrongOtp, setWrongOtp] = useState<boolean>(false);
   const [otp, setOtp] = useState('');
+  const [successOtpVerifiedView, setSuccessOtpVerifiedView] = useState(false);
 
   const navigation = useNavigation<any>();
 
   const lottViewShow = () => {
     if (otp === '123456') {
       setLottieView(true);
-      setTimeout(() => {
-        setCommonLottieView(1);
-      }, 200);
-
-      setTimeout(() => {
-        setCommonLottieView(2);
-      }, 1500);
 
       setTimeout(() => {
         navigation.navigate('HomeScreen');
-      }, 3500);
+      }, 3000);
     } else {
       setWrongOtp(true);
       Alert.alert('Password:123456');
@@ -68,7 +61,7 @@ function EnterOtp(props: any) {
         source={assets.jsonData.triangleLoader}
         loop={false}
         autoPlay={true}
-        onAnimationFinish={() => animatedSuccess}
+        onAnimationFinish={() => setSuccessOtpVerifiedView(true)}
       />
     );
   };
@@ -81,17 +74,6 @@ function EnterOtp(props: any) {
         autoPlay={true}
       />
     );
-  };
-
-  const switchAnimation = (commonLottieView: any) => {
-    switch (commonLottieView) {
-      case 1:
-        return animatedTriangle();
-      case 2:
-        return animatedSuccess();
-      default:
-        return animatedTriangle();
-    }
   };
 
   return (
@@ -119,7 +101,7 @@ function EnterOtp(props: any) {
         </View>
       ) : (
         <View style={styles.lotteView}>
-          {commonLottieView == 2 && (
+          {successOtpVerifiedView === true && (
             <Text style={styles.loginSuccess}>{`${texts.LOGIN_SUCCESS}!`}</Text> // commonLottieView(2)->showing text only when success json animation is loaded
           )}
           <View
@@ -127,7 +109,7 @@ function EnterOtp(props: any) {
               height: proportionedPixel(40),
               width: proportionedPixel(40),
             }}>
-            {switchAnimation(commonLottieView)}
+            {successOtpVerifiedView ? animatedSuccess() : animatedTriangle()}
           </View>
         </View>
       )}
