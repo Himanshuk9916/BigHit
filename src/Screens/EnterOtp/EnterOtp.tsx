@@ -1,5 +1,11 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Alert, LogBox} from 'react-native';
+import {
+  View, 
+  Text, 
+  TouchableOpacity, 
+  Alert, 
+  LogBox
+} from 'react-native';
 import texts from '../../constants/Text';
 import AnimatedLottieView from 'lottie-react-native';
 import styles from './EnterOtpStyles';
