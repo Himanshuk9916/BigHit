@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View, 
-  Text, 
-  TouchableOpacity, 
-  Alert, 
-  LogBox
-} from 'react-native';
+import {View, Text, TouchableOpacity, Alert, LogBox} from 'react-native';
 import texts from '../../constants/Text';
 import AnimatedLottieView from 'lottie-react-native';
 import styles from './EnterOtpStyles';
@@ -97,6 +91,7 @@ function EnterOtp(props: any) {
               onPress={() => lottViewShow()}
               style={[
                 styles.touchableContainer,
+                // eslint-disable-next-line react-native/no-inline-styles
                 {opacity: otp.length === 6 ? 1.0 : 0.5},
               ]}>
               <View style={styles.touchableContainer}>
