@@ -1,19 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import StackNavigator from './src/navigators/StackNavigator';
-import NetInfo from '@react-native-community/netinfo';
-import NoNet from './src/screens/NoInternet/NoNet';
+import GlovalNavigation from './src/navigators/GlobalNavigation';
 
 function App() {
-  const [isConnected, setConnection] = useState<any>(true);
-
-  useEffect(() => {
-    const unsubscribe = NetInfo.addEventListener(state => {
-      setConnection(state.isConnected);
-    });
-    return () => unsubscribe();
-  }, []);
-
-  return isConnected ? <StackNavigator /> : <NoNet />
+  return(
+    <GlovalNavigation />
+  )
 }
 
 export default App;
